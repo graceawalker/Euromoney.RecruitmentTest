@@ -1,4 +1,9 @@
 ﻿using System;
+using Autofac;
+using ContentConsole.Application;
+using ContentConsole.Repositories;
+using ContentConsole.Services;
+using ContentConsole.Wrapper;
 
 namespace ContentConsole
 {
@@ -6,39 +11,23 @@ namespace ContentConsole
     {
         public static void Main(string[] args)
         {
-            string bannedWord1 = "swine";
-            string bannedWord2 = "bad";
-            string bannedWord3 = "nasty";
-            string bannedWord4 = "horrible";
+            var builder = new ContainerBuilder();
+            builder.RegisterType<BadWordService>().As<IBadWordService>();
+            builder.RegisterType<BadWordRepository>().As<IBadWordRepository>();
+            builder.RegisterType<ApplicationOptions>().As<IDisplayApplicationOptions>();
+            builder.RegisterType<CuratorApplication>().As<ICuratorApplication>();
+            builder.RegisterType<ReaderApplication>().As<IReaderApplication>();
+            builder.RegisterType<ConsoleWrapper>().As<IConsoleWrapper>();
+            var container = builder.Build();
 
-            string content =
-                "The weather in Manchester in winter is bad. It rains all the time - it must be horrible for people visiting.";
-
-            int badWords = 0;
-            if (content.Contains(bannedWord1))
+            using (var scope = container.BeginLifetimeScope())
             {
-                badWords = badWords + 1;
+                var bannedWordService = scope.Resolve<IDisplayApplicationOptions>();
+                bannedWordService.ShowApplicationOptions();
             }
-            if (content.Contains(bannedWord2))
-            {
-                badWords = badWords + 1;
-            }
-            if (content.Contains(bannedWord3))
-            {
-                badWords = badWords + 1;
-            }
-            if (content.Contains(bannedWord4))
-            {
-                badWords = badWords + 1;
-            }
-
-            Console.WriteLine("Scanned the text:");
-            Console.WriteLine(content);
-            Console.WriteLine("Total Number of negative words: " + badWords);
-
-            Console.WriteLine("Press ANY key to exit.");
-            Console.ReadKey();
         }
+
     }
+
 
 }
