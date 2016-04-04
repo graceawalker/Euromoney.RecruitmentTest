@@ -1,21 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using ContentConsole.Repositories;
 using ContentConsole.Services;
 using Moq;
 using NUnit.Framework;
 using Shouldly;
 
-namespace ContentConsole.Test.Unit
+namespace ContentConsole.Test.Unit.Services
 {
     [TestFixture]
     public class BadWordServiceTests
     {
         [Test]
-        public void counting_bad_words_in_content()
+        public void should_count_bad_words_in_content()
         {
             var badWordRepo = new Mock<IBadWordRepository>();
             badWordRepo.Setup(x => x.All()).Returns(new List<string> {"bad", "nasty"});
@@ -27,7 +23,7 @@ namespace ContentConsole.Test.Unit
         }
 
         [Test]
-        public void filtering_bad_words_in_content()
+        public void should_filter_bad_words_in_content()
         {
             var badWordRepo = new Mock<IBadWordRepository>();
             badWordRepo.Setup(x => x.All()).Returns(new List<string> { "bad", "nasty" });

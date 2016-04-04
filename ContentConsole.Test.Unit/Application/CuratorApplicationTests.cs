@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ContentConsole.Application;
+﻿using ContentConsole.Application;
 using ContentConsole.Services;
 using ContentConsole.Wrapper;
 using Moq;
 using NUnit.Framework;
 
-namespace ContentConsole.Test.Unit
+namespace ContentConsole.Test.Unit.Application
 {
     [TestFixture]
     public class CuratorApplicationTests
