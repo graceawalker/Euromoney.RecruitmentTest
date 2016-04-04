@@ -51,10 +51,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ReaderApplicationTests.cs" />
+    <Compile Include="Application\ReaderApplicationTests.cs" />
     <Compile Include="DisplayApplicationOptionsTests.cs" />
-    <Compile Include="CuratorApplicationTests.cs" />
-    <Compile Include="BadWordServiceTests.cs" />
+    <Compile Include="Application\CuratorApplicationTests.cs" />
+    <Compile Include="Services\BadWordServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
